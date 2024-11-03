@@ -46,8 +46,8 @@
         <!-- Filter Button -->
         <ImageButton
             android:id="@+id/filter_button"
-            android:layout_width="40dp"
-            android:layout_height="46dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/filter_button_background"
             android:contentDescription="Filter"
@@ -75,7 +75,33 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" />
 
-        <!-- Repeat for other sections -->
+        <!-- Section 2: Featured Art -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Featured Art"
+            android:textSize="18sp"
+            android:paddingTop="16dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewFeatured"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <!-- Section 3: New Art -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Art"
+            android:textSize="18sp"
+            android:paddingTop="16dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -8,7 +8,6 @@ public class Art {
     private int price;
     private boolean favorited;
 
-    // Constructor
     public Art(String title, int imageResId, int like, String description, int price, boolean favorited) {
         this.title = title;
         this.imageResId = imageResId;
@@ -17,8 +16,7 @@ public class Art {
         this.price = price;
         this.favorited = favorited;
     }
-
-    // Getters and Setters
+    
     public String getTitle() {
         return title;
     }
