@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "title": "Starry Night",
+        "imageResId": "starry_night",
+        "description": "A famous painting by Vincent van Gogh.",
+        "price": 200,
+        "like": 100,
+        "favorited": false,
+        "category": "popular"
+    },
+    {
+        "id": 2,
+        "title": "Mona Lisa",
+        "imageResId": "starry_night",
+        "description": "A portrait painting by Leonardo da Vinci.",
+        "price": 300,
+        "like": 150,
+        "favorited": true,
+        "category": "featured"
+    },
+    {
+        "id": 3,
+        "title": "Mona Lisa",
+        "imageResId": "starry_night",
+        "description": "A portrait painting by Leonardo da Vinci.",
+        "price": 300,
+        "like": 150,
+        "favorited": true,
+        "category": "new"
+    }
+]

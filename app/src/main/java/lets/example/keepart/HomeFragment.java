@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.util.Log;  // Import the Log class
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,14 +43,47 @@ public class HomeFragment extends Fragment {
     }
 
     private void populateArtLists() {
-        // Sample data for each section
+        // Load art data from JSON file
+        List<Art> allArtList = ArtDataLoader.loadArtData(getContext());
+
+        // Initialize the lists
         popularArtList = new ArrayList<>();
         featuredArtList = new ArrayList<>();
         newArtList = new ArrayList<>();
 
-        // Populate with sample data
-        popularArtList.add(new Art("Starry Night", R.drawable.starry_night, 100, "A famous painting by Vincent van Gogh.", 200, false));
+        // Log the size of the loaded art list to debug
+        Log.d("HomeFragment", "Total art items loaded: " + allArtList.size());
+
+        // Filter the art items into appropriate lists
+        for (Art art : allArtList) {
+            String category = art.getCategory();
+
+            if (category != null) {
+                switch (category) {
+                    case "popular":
+                        popularArtList.add(art);
+                        break;
+                    case "featured":
+                        featuredArtList.add(art);
+                        break;
+                    case "new":
+                        newArtList.add(art);
+                        break;
+                    default:
+                        Log.d("HomeFragment", "Unknown category: " + category);
+                        break;
+                }
+            } else {
+                Log.d("HomeFragment", "Art category is null for art: " + art);
+            }
+        }
+
+        // Log the sizes of the filtered lists to check if they are being populated
+        Log.d("HomeFragment", "Popular art items: " + popularArtList.size());
+        Log.d("HomeFragment", "Featured art items: " + featuredArtList.size());
+        Log.d("HomeFragment", "New art items: " + newArtList.size());
     }
+
 
     private void setupAdapters() {
         // Set adapters with data and click listener
@@ -69,6 +103,7 @@ public class HomeFragment extends Fragment {
         intent.putExtra("description", art.getDescription());
         intent.putExtra("price", art.getPrice());
         intent.putExtra("like", art.getLike());
+        intent.putExtra("favorited", art.isFavorited());
         startActivity(intent);
     }
 }

@@ -43,6 +43,7 @@ public class ArtAdapter extends RecyclerView.Adapter<ArtAdapter.ArtViewHolder> {
         });
     }
 
+
     @Override
     public int getItemCount() {
         return artList.size();

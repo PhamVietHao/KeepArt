@@ -2,38 +2,111 @@ package lets.example.keepart;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class ArtActivity extends AppCompatActivity {
+
+    private boolean isFavorite;
+    private ImageButton favoriteButton;
+    private int artId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_art);
 
-        // Get the Intent that started this activity and extract the data
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         int imageResId = intent.getIntExtra("imageResId", 0);
         String description = intent.getStringExtra("description");
         int price = intent.getIntExtra("price", 0);
         int like = intent.getIntExtra("like", 0);
+        artId = intent.getIntExtra("id", -1);
+        isFavorite = intent.getBooleanExtra("favorited", false);
 
-        // Find views
+        Log.d("ArtActivity", "Received favorited status: " + isFavorite);
+
         ImageView artImageView = findViewById(R.id.artImageView);
         TextView artTitleTextView = findViewById(R.id.artTitleTextView);
         TextView artDescriptionTextView = findViewById(R.id.artDescriptionTextView);
         TextView artPriceTextView = findViewById(R.id.artPriceTextView);
         TextView artLikesTextView = findViewById(R.id.artLikesTextView);
+        ImageButton backButton = findViewById(R.id.backButton);
+        favoriteButton = findViewById(R.id.favoriteButton);
 
-        // Set data to views
         artImageView.setImageResource(imageResId);
         artTitleTextView.setText(title);
         artDescriptionTextView.setText(description);
         artPriceTextView.setText("Price: $" + price);
         artLikesTextView.setText("Likes: " + like);
+
+        updateFavoriteIcon();
+
+        backButton.setOnClickListener(v -> finish());
+
+        favoriteButton.setOnClickListener(v -> {
+            isFavorite = !isFavorite;
+            Log.d("ArtActivity", "Toggled favorite status: " + isFavorite);
+            updateFavoriteIcon();
+            saveFavoriteStatusToFile();
+        });
+    }
+
+    private void updateFavoriteIcon() {
+        if (isFavorite) {
+            favoriteButton.setImageResource(R.drawable.ic_heart_filled);
+        } else {
+            favoriteButton.setImageResource(R.drawable.ic_heart_unfilled);
+        }
+    }
+
+    private void saveFavoriteStatusToFile() {
+        try {
+            JSONArray jsonArray = loadArtDataFromFile();
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                if (jsonObject.getInt("id") == artId) {
+                    jsonObject.put("favorited", isFavorite);
+                    break;
+                }
+            }
+
+            saveArtDataToFile(jsonArray);
+
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private JSONArray loadArtDataFromFile() throws IOException, JSONException {
+        FileInputStream fis = openFileInput("data_internal.json");
+        int character;
+        StringBuilder stringBuilder = new StringBuilder();
+        while ((character = fis.read()) != -1) {
+            stringBuilder.append((char) character);
+        }
+        fis.close();
+
+        return new JSONArray(stringBuilder.toString());
+    }
+
+    private void saveArtDataToFile(JSONArray jsonArray) throws IOException {
+        FileOutputStream fos = openFileOutput("data_internal.json", MODE_PRIVATE);
+        fos.write(jsonArray.toString().getBytes());
+        fos.close();
     }
 }

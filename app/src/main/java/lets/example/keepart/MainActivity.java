@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        FileUtils.copyDataJsonIfNeeded(this);
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavbar = findViewById(R.id.bottomNav);
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment).commit();
 
 
-        Art art1 = new Art("Starry Night", R.drawable.starry_night, 100, "A famous painting by Vincent van Gogh.", 200, false);
+
     }
 
     private NavigationBarView.OnItemSelectedListener navListener =

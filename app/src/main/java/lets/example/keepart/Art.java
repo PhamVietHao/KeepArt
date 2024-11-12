@@ -1,22 +1,37 @@
 package lets.example.keepart;
 
 public class Art {
+    private int id;
     private String title;
     private int imageResId;
     private int like;
     private String description;
     private int price;
     private boolean favorited;
+    private String category;
 
-    public Art(String title, int imageResId, int like, String description, int price, boolean favorited) {
+    public Art(int id, String title, int imageResId, int like, String description, int price, boolean favorited, String category) {
+        this.id = id;
         this.title = title;
         this.imageResId = imageResId;
         this.like = like;
         this.description = description;
         this.price = price;
         this.favorited = favorited;
+        this.category = category;
     }
-    
+
+    // Getter and setter for id
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // Existing getters and setters
+
     public String getTitle() {
         return title;
     }
@@ -64,7 +79,12 @@ public class Art {
     public void setFavorited(boolean favorited) {
         this.favorited = favorited;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }
-
-
-
