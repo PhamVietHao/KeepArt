@@ -20,6 +20,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerViewPopular, recyclerViewFeatured, recyclerViewNew;
     private List<Art> popularArtList, featuredArtList, newArtList;
+    private static final int ART_DETAIL_REQUEST_CODE = 100;
 
     @Nullable
     @Override
@@ -84,7 +85,6 @@ public class HomeFragment extends Fragment {
         Log.d("HomeFragment", "New art items: " + newArtList.size());
     }
 
-
     private void setupAdapters() {
         // Set adapters with data and click listener
         ArtAdapter popularAdapter = new ArtAdapter(popularArtList, getContext(), this::openArtDetailActivity);
@@ -104,6 +104,52 @@ public class HomeFragment extends Fragment {
         intent.putExtra("price", art.getPrice());
         intent.putExtra("like", art.getLike());
         intent.putExtra("favorited", art.isFavorited());
-        startActivity(intent);
+        intent.putExtra("id", art.getId());
+        startActivityForResult(intent, ART_DETAIL_REQUEST_CODE);  // Start activity for result
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ART_DETAIL_REQUEST_CODE && resultCode == getActivity().RESULT_OK) {
+            if (data != null) {
+                // Retrieve the updated favorited status
+                int updatedArtId = data.getIntExtra("id", -1);
+                boolean updatedFavoritedStatus = data.getBooleanExtra("favorited", false);
+
+                // Update the art list with the new favorited status
+                updateArtFavoritedStatus(updatedArtId, updatedFavoritedStatus);
+            }
+        }
+    }
+
+    private void updateArtFavoritedStatus(int artId, boolean isFavorited) {
+        // Update the favorited status for the art in the list
+        for (Art art : popularArtList) {
+            if (art.getId() == artId) {
+                art.setFavorited(isFavorited);
+                break;
+            }
+        }
+
+        for (Art art : featuredArtList) {
+            if (art.getId() == artId) {
+                art.setFavorited(isFavorited);
+                break;
+            }
+        }
+
+        for (Art art : newArtList) {
+            if (art.getId() == artId) {
+                art.setFavorited(isFavorited);
+                break;
+            }
+        }
+
+        // Notify the adapters that the data has changed
+        recyclerViewPopular.getAdapter().notifyDataSetChanged();
+        recyclerViewFeatured.getAdapter().notifyDataSetChanged();
+        recyclerViewNew.getAdapter().notifyDataSetChanged();
     }
 }
