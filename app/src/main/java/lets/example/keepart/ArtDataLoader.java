@@ -37,8 +37,8 @@ public class ArtDataLoader {
                 int like = jsonObject.getInt("like");
                 boolean favorited = jsonObject.getBoolean("favorited");
                 String category = jsonObject.getString("category");
-
-                Art art = new Art(id, title, imageResId, like, description, price, favorited, category);
+                String artist = jsonObject.getString("artist");
+                Art art = new Art(id, title, imageResId, like, description, price, favorited, category, artist);
                 artList.add(art);
             }
         } catch (Exception e) {

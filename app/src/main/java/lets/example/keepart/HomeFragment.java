@@ -1,17 +1,23 @@
 package lets.example.keepart;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.util.Log;  // Import the Log class
-
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder; // Import for Material dialog
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +26,9 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerViewPopular, recyclerViewFeatured, recyclerViewNew;
     private List<Art> popularArtList, featuredArtList, newArtList;
+    private boolean showPopular = true;
+    private boolean showFeatured = true;
+    private boolean showNew = true;
     private static final int ART_DETAIL_REQUEST_CODE = 100;
 
     @Nullable
@@ -40,25 +49,22 @@ public class HomeFragment extends Fragment {
         populateArtLists();
         setupAdapters();
 
+        // Initialize the filter button
+        view.findViewById(R.id.filter_button).setOnClickListener(v -> openFilterDialog());
+
         return view;
     }
 
     private void populateArtLists() {
-        // Load art data from JSON file
         List<Art> allArtList = ArtDataLoader.loadArtData(getContext());
 
-        // Initialize the lists
         popularArtList = new ArrayList<>();
         featuredArtList = new ArrayList<>();
         newArtList = new ArrayList<>();
 
-        // Log the size of the loaded art list to debug
-        Log.d("HomeFragment", "Total art items loaded: " + allArtList.size());
-
         // Filter the art items into appropriate lists
         for (Art art : allArtList) {
             String category = art.getCategory();
-
             if (category != null) {
                 switch (category) {
                     case "popular":
@@ -70,23 +76,12 @@ public class HomeFragment extends Fragment {
                     case "new":
                         newArtList.add(art);
                         break;
-                    default:
-                        Log.d("HomeFragment", "Unknown category: " + category);
-                        break;
                 }
-            } else {
-                Log.d("HomeFragment", "Art category is null for art: " + art);
             }
         }
-
-        // Log the sizes of the filtered lists to check if they are being populated
-        Log.d("HomeFragment", "Popular art items: " + popularArtList.size());
-        Log.d("HomeFragment", "Featured art items: " + featuredArtList.size());
-        Log.d("HomeFragment", "New art items: " + newArtList.size());
     }
 
     private void setupAdapters() {
-        // Set adapters with data and click listener
         ArtAdapter popularAdapter = new ArtAdapter(popularArtList, getContext(), this::openArtDetailActivity);
         ArtAdapter featuredAdapter = new ArtAdapter(featuredArtList, getContext(), this::openArtDetailActivity);
         ArtAdapter newAdapter = new ArtAdapter(newArtList, getContext(), this::openArtDetailActivity);
@@ -94,6 +89,9 @@ public class HomeFragment extends Fragment {
         recyclerViewPopular.setAdapter(popularAdapter);
         recyclerViewFeatured.setAdapter(featuredAdapter);
         recyclerViewNew.setAdapter(newAdapter);
+
+        // Apply the initial filter settings
+        applyFilter();
     }
 
     private void openArtDetailActivity(Art art) {
@@ -105,27 +103,11 @@ public class HomeFragment extends Fragment {
         intent.putExtra("like", art.getLike());
         intent.putExtra("favorited", art.isFavorited());
         intent.putExtra("id", art.getId());
-        startActivityForResult(intent, ART_DETAIL_REQUEST_CODE);  // Start activity for result
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == ART_DETAIL_REQUEST_CODE && resultCode == getActivity().RESULT_OK) {
-            if (data != null) {
-                // Retrieve the updated favorited status
-                int updatedArtId = data.getIntExtra("id", -1);
-                boolean updatedFavoritedStatus = data.getBooleanExtra("favorited", false);
-
-                // Update the art list with the new favorited status
-                updateArtFavoritedStatus(updatedArtId, updatedFavoritedStatus);
-            }
-        }
+        intent.putExtra("artist", art.getArtist());
+        startActivityForResult(intent, ART_DETAIL_REQUEST_CODE);
     }
 
     private void updateArtFavoritedStatus(int artId, boolean isFavorited) {
-        // Update the favorited status for the art in the list
         for (Art art : popularArtList) {
             if (art.getId() == artId) {
                 art.setFavorited(isFavorited);
@@ -147,9 +129,42 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        // Notify the adapters that the data has changed
         recyclerViewPopular.getAdapter().notifyDataSetChanged();
         recyclerViewFeatured.getAdapter().notifyDataSetChanged();
         recyclerViewNew.getAdapter().notifyDataSetChanged();
+    }
+
+    private void openFilterDialog() {
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.filter_dialog, null);
+
+        CheckBox checkboxPopular = dialogView.findViewById(R.id.checkbox_popular);
+        CheckBox checkboxFeatured = dialogView.findViewById(R.id.checkbox_featured);
+        CheckBox checkboxNew = dialogView.findViewById(R.id.checkbox_new);
+
+        checkboxPopular.setChecked(showPopular);
+        checkboxFeatured.setChecked(showFeatured);
+        checkboxNew.setChecked(showNew);
+
+        // Create and show the custom dialog with sliding animation
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getContext(), R.style.CustomDialogTheme);
+        builder.setView(dialogView)
+                .setPositiveButton("Apply", (dialog, which) -> {
+                    showPopular = checkboxPopular.isChecked();
+                    showFeatured = checkboxFeatured.isChecked();
+                    showNew = checkboxNew.isChecked();
+                    applyFilter();
+                    dialog.dismiss();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+
+        androidx.appcompat.app.AlertDialog dialog = builder.create();
+        dialog.getWindow().setWindowAnimations(R.style.DialogSlideInFromBottom);  // Apply sliding animation
+        dialog.show();
+    }
+
+    private void applyFilter() {
+        recyclerViewPopular.setVisibility(showPopular ? View.VISIBLE : View.GONE);
+        recyclerViewFeatured.setVisibility(showFeatured ? View.VISIBLE : View.GONE);
+        recyclerViewNew.setVisibility(showNew ? View.VISIBLE : View.GONE);
     }
 }

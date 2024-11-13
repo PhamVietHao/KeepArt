@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base dialog theme -->
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:background">?android:attr/windowBackground</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <!-- Customize additional attributes here -->
+    </style>
+
+    <!-- Sliding animation for dialog -->
+    <style name="DialogSlideInFromBottom">
+        <item name="android:windowEnterAnimation">@anim/dialog_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_slide_out</item>
+    </style>
+</resources>

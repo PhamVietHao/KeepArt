@@ -58,12 +58,20 @@
         android:layout_below="@id/artImageView"
         android:layout_marginTop="4dp" />
 
+    <TextView
+        android:id="@+id/artArtistTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/artDescriptionTextView"
+        android:layout_marginTop="4dp" />
+
+
     <!-- Art Price -->
     <TextView
         android:id="@+id/artPriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/artDescriptionTextView"
+        android:layout_below="@id/artArtistTextView"
         android:layout_marginTop="4dp" />
 
     <!-- Art Likes -->

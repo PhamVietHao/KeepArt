@@ -187,4 +187,11 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:textColor="@color/gray"/>
+
+    <!-- RecyclerView for the collection of artworks -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/artRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/collectionsText" />
 </LinearLayout>

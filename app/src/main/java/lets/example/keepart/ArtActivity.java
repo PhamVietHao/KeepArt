@@ -37,7 +37,7 @@ public class ArtActivity extends AppCompatActivity {
         int like = intent.getIntExtra("like", 0);
         artId = intent.getIntExtra("id", -1);
         isFavorite = intent.getBooleanExtra("favorited", false);
-
+        String artist = intent.getStringExtra("artist");
         Log.d("ArtActivity", "Received favorited status: " + isFavorite);
 
         // Find views
@@ -46,6 +46,7 @@ public class ArtActivity extends AppCompatActivity {
         TextView artDescriptionTextView = findViewById(R.id.artDescriptionTextView);
         TextView artPriceTextView = findViewById(R.id.artPriceTextView);
         TextView artLikesTextView = findViewById(R.id.artLikesTextView);
+        TextView artArtistTextView = findViewById(R.id.artArtistTextView);
         ImageButton backButton = findViewById(R.id.backButton);
         favoriteButton = findViewById(R.id.favoriteButton);
 
@@ -55,6 +56,7 @@ public class ArtActivity extends AppCompatActivity {
         artDescriptionTextView.setText(description);
         artPriceTextView.setText("Price: $" + price);
         artLikesTextView.setText("Likes: " + like);
+        artArtistTextView.setText("Artist: " + artist);
 
         // Update the favorite icon based on the favorited status
         updateFavoriteIcon();

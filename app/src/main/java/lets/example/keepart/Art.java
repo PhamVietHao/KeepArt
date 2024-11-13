@@ -9,8 +9,9 @@ public class Art {
     private int price;
     private boolean favorited;
     private String category;
+    private String artist;
 
-    public Art(int id, String title, int imageResId, int like, String description, int price, boolean favorited, String category) {
+    public Art(int id, String title, int imageResId, int like, String description, int price, boolean favorited, String category, String artist) {
         this.id = id;
         this.title = title;
         this.imageResId = imageResId;
@@ -19,6 +20,7 @@ public class Art {
         this.price = price;
         this.favorited = favorited;
         this.category = category;
+        this.artist = artist;
     }
 
     // Getter and setter for id
@@ -86,5 +88,13 @@ public class Art {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist= artist;
     }
 }

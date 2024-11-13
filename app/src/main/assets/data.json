@@ -7,7 +7,8 @@
         "price": 200,
         "like": 100,
         "favorited": false,
-        "category": "popular"
+        "category": "popular",
+        "artist": "Nguyen Dong Nam"
     },
     {
         "id": 2,
@@ -17,7 +18,8 @@
         "price": 300,
         "like": 150,
         "favorited": true,
-        "category": "featured"
+        "category": "featured",
+        "artist": "Do Dang Khoa"
     },
     {
         "id": 3,
@@ -27,6 +29,7 @@
         "price": 300,
         "like": 150,
         "favorited": true,
-        "category": "new"
+        "category": "new",
+        "artist": "Pham Viet Hao"
     }
 ]

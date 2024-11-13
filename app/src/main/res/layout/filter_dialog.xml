@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <CheckBox
+        android:id="@+id/checkbox_popular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Popular Art" />
+
+    <ImageView
+        android:id="@+id/check_popular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_check"
+        android:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/checkbox_featured"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Featured Art" />
+
+    <ImageView
+        android:id="@+id/check_featured"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_check"
+        android:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/checkbox_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Art" />
+
+    <ImageView
+        android:id="@+id/check_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_check"
+        android:visibility="gone" />
+
+</LinearLayout>
