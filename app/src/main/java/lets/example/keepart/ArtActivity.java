@@ -56,7 +56,7 @@ public class ArtActivity extends AppCompatActivity {
         artDescriptionTextView.setText(description);
         artLikesTextView.setText(String.valueOf(like));
         artArtistTextView.setText("Artist: " + artist);
-        lastBidAmount.setText("$500"); // Placeholder for last bid amount
+        lastBidAmount.setText("$500");
 
         // Update the favorite icon based on the favorited status
         updateFavoriteIcon();
@@ -64,6 +64,7 @@ public class ArtActivity extends AppCompatActivity {
         // Set the back button to finish the activity and send the result
         backButton.setOnClickListener(v -> {
             // Before finishing, send the updated favorite status
+            Log.d("ArtActivity", "Back button clicked. Sending updated favorite status: " + isFavorite);
             sendResultAndFinish();
         });
 
@@ -80,8 +81,10 @@ public class ArtActivity extends AppCompatActivity {
         // Update the favorite icon based on the favorited status
         if (isFavorite) {
             favoriteButton.setImageResource(R.drawable.ic_heart_filled);
+            Log.d("ArtActivity", "Favorite icon set to filled.");
         } else {
             favoriteButton.setImageResource(R.drawable.ic_heart_unfilled);
+            Log.d("ArtActivity", "Favorite icon set to unfilled.");
         }
     }
 
@@ -89,12 +92,14 @@ public class ArtActivity extends AppCompatActivity {
         try {
             // Load the current art data from data_internal.json
             JSONArray jsonArray = loadArtDataFromFile();
+            Log.d("ArtActivity", "Loaded JSON data: " + jsonArray.toString());
 
             // Update the favorite status for the matching art item
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 if (jsonObject.getInt("id") == artId) {
                     jsonObject.put("favorited", isFavorite);
+                    Log.d("ArtActivity", "Updated favorite status for art ID: " + artId);
                     break;
                 }
             }
@@ -103,7 +108,7 @@ public class ArtActivity extends AppCompatActivity {
             saveArtDataToFile(jsonArray);
 
         } catch (IOException | JSONException e) {
-            e.printStackTrace();
+            Log.e("ArtActivity", "Error saving favorite status: " + e.getMessage(), e);
         }
     }
 
@@ -116,6 +121,7 @@ public class ArtActivity extends AppCompatActivity {
             stringBuilder.append((char) character);
         }
         fis.close();
+        Log.d("ArtActivity", "Read file content: " + stringBuilder.toString());
         return new JSONArray(stringBuilder.toString());
     }
 
@@ -124,6 +130,7 @@ public class ArtActivity extends AppCompatActivity {
         FileOutputStream fos = openFileOutput("data_internal.json", MODE_PRIVATE);
         fos.write(jsonArray.toString().getBytes());
         fos.close();
+        Log.d("ArtActivity", "Saved updated data to file: " + jsonArray.toString());
     }
 
     // This method is called when the back button is clicked to send the result
@@ -132,6 +139,7 @@ public class ArtActivity extends AppCompatActivity {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("id", artId);
         resultIntent.putExtra("favorited", isFavorite);
+        Log.d("ArtActivity", "Sending result: artId=" + artId + ", favorited=" + isFavorite);
         setResult(RESULT_OK, resultIntent);
 
         // Finish the activity and return to the parent

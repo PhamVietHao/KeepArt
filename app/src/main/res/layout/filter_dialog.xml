@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:padding="12dp"
+    android:layout_margin="12dp"
+    android:gravity="center_horizontal"
+    android:paddingTop="20dp"> <!-- Add padding top to make room for close button -->
+
+    <ImageButton
+        android:id="@+id/btn_close_filter"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_close"
+        android:background="?android:attr/selectableItemBackgroundBorderless" />
 
     <CheckBox
         android:id="@+id/checkbox_popular"
@@ -44,5 +54,13 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_menu_check"
         android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_confirm_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm Filter"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center" />
 
 </LinearLayout>
