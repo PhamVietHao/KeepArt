@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class ArtActivity extends AppCompatActivity {
 
-    private boolean isFavorite; // To track if the art is marked as favorite
+    private boolean isFavorite; // Track if the art is marked as favorite
     private ImageButton favoriteButton;
     private int artId; // To identify the art for updating its status
 
@@ -44,19 +44,19 @@ public class ArtActivity extends AppCompatActivity {
         ImageView artImageView = findViewById(R.id.artImageView);
         TextView artTitleTextView = findViewById(R.id.artTitleTextView);
         TextView artDescriptionTextView = findViewById(R.id.artDescriptionTextView);
-        TextView artPriceTextView = findViewById(R.id.artPriceTextView);
         TextView artLikesTextView = findViewById(R.id.artLikesTextView);
         TextView artArtistTextView = findViewById(R.id.artArtistTextView);
-        ImageButton backButton = findViewById(R.id.backButton);
+        TextView lastBidAmount = findViewById(R.id.lastBidAmount);
         favoriteButton = findViewById(R.id.favoriteButton);
+        ImageButton backButton = findViewById(R.id.backButton);
 
         // Set data to views
         artImageView.setImageResource(imageResId);
         artTitleTextView.setText(title);
         artDescriptionTextView.setText(description);
-        artPriceTextView.setText("Price: $" + price);
-        artLikesTextView.setText("Likes: " + like);
+        artLikesTextView.setText(String.valueOf(like));
         artArtistTextView.setText("Artist: " + artist);
+        lastBidAmount.setText("$500"); // Placeholder for last bid amount
 
         // Update the favorite icon based on the favorited status
         updateFavoriteIcon();
@@ -77,6 +77,7 @@ public class ArtActivity extends AppCompatActivity {
     }
 
     private void updateFavoriteIcon() {
+        // Update the favorite icon based on the favorited status
         if (isFavorite) {
             favoriteButton.setImageResource(R.drawable.ic_heart_filled);
         } else {

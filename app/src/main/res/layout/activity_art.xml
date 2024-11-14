@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
-    <LinearLayout
-        android:id="@+id/titleBar"
+    <!-- Title Bar with Back Button and Favorite Button -->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="8dp">
+        android:layout_height="wrap_content">
 
+        <!-- Back Button -->
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/black_circle_background"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Back" />
+            android:contentDescription="Back"
+            android:background="@drawable/black_circle_background" />
 
-        <!-- Art Title TextView -->
+        <!-- Art Title (Center aligned) -->
         <TextView
             android:id="@+id/artTitleTextView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Art Title Here"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:textColor="#000000"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp" />
 
-        <!-- Heart Icon Button without initial src -->
+        <!-- Favorite Button (Heart Icon) -->
         <ImageButton
             android:id="@+id/favoriteButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Favorite" />
-    </LinearLayout>
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_heart_unfilled"
+            android:contentDescription="Favorite"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+    </RelativeLayout>
 
     <!-- Art Image -->
     <ImageView
@@ -47,38 +52,103 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
-        android:layout_below="@id/titleBar"
         android:layout_marginTop="16dp" />
 
-    <!-- Art Description -->
+    <!-- Heart Icon, Likes Count, and Artist Name -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp">
+
+        <!-- Heart Icon -->
+        <ImageButton
+            android:id="@+id/likeIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_heart_unfilled"
+            android:contentDescription="Like" />
+
+        <!-- Likes Count -->
+        <TextView
+            android:id="@+id/artLikesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:layout_marginStart="4dp"
+            android:textColor="#000000" />
+
+        <!-- Space to increase the gap between likes and artist name -->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <!-- Artist Name -->
+        <TextView
+            android:id="@+id/artArtistTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Artist: [Artist Name]"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <!-- Description and Last Bid -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <!-- Description Label (Gray Color) -->
+        <TextView
+            android:id="@+id/artDescriptionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description:"
+            android:textStyle="bold"
+            android:textColor="#808080"
+             />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <!-- Last Bid Label -->
+        <TextView
+            android:id="@+id/lastBidLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last bid:"
+            android:textColor="#808080"
+             /> <!-- Added marginStart for gap -->
+
+        <!-- Last Bid Amount Placeholder -->
+        <TextView
+            android:id="@+id/lastBidAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0.00"
+            android:textColor="#FF69B4"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+    <!-- Art Description Paragraph -->
     <TextView
         android:id="@+id/artDescriptionTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/artImageView"
-        android:layout_marginTop="4dp" />
+        android:text="This is a detailed description of the art piece. It could include the artist's background, the inspiration behind the artwork, and any other relevant information that enhances the viewer's understanding of the piece."
+        android:textColor="#000000"
+        android:layout_marginTop="16dp" />
 
+    <!-- Larger gap below the description and last bid section -->
     <TextView
-        android:id="@+id/artArtistTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/artDescriptionTextView"
-        android:layout_marginTop="4dp" />
-
-
-    <!-- Art Price -->
-    <TextView
-        android:id="@+id/artPriceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/artArtistTextView"
-        android:layout_marginTop="4dp" />
-
-    <!-- Art Likes -->
-    <TextView
-        android:id="@+id/artLikesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/artPriceTextView"
-        android:layout_marginTop="4dp" />
-</RelativeLayout>
+        android:layout_marginTop="32dp" />
+</LinearLayout>
