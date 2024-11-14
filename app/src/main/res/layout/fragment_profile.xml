@@ -1,197 +1,197 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center">
+    android:gravity="center_horizontal"
+    android:layout_alignParentTop="true">
 
     <!-- Profile Title -->
-    <TextView
-        android:id="@+id/profileTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile Page"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginBottom="16dp"/>
+<TextView
+    android:id="@+id/profileTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Profile Page"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    android:textColor="@color/black"
+    android:layout_marginBottom="16dp"/>
 
     <!-- Circular Avatar -->
-    <ImageView
-        android:id="@+id/userAvatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/circle_background"
-        android:scaleType="centerCrop"
-        android:src="@drawable/avatar_hao"/>
+<ImageView
+    android:id="@+id/userAvatar"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/circle_background"
+    android:scaleType="centerCrop"
+    android:src="@drawable/avatar_hao"/>
 
     <!-- User Name -->
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pham Viet Hao"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginBottom="4dp"/>
+<TextView
+    android:id="@+id/userName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Pham Viet Hao"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:textColor="@color/black"
+    android:layout_marginBottom="4dp"/>
 
     <!-- Username -->
-    <TextView
-        android:id="@+id/userHandle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@user"
-        android:textSize="16sp"
-        android:textColor="@color/gray"
-        android:layout_marginBottom="16dp"/>
+<TextView
+    android:id="@+id/userHandle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@user"
+    android:textSize="16sp"
+    android:textColor="@color/gray"
+    android:layout_marginBottom="16dp"/>
 
     <!-- Following, Followers, and Artwork Stats -->
     <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_marginBottom="16dp">
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginEnd="24dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/followingCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="16dp">
+        android:text="100"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginEnd="24dp"
-            android:gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Following"
+        android:textSize="14sp"
+        android:textColor="@color/gray"/>
+</LinearLayout>
 
-            <TextView
-                android:id="@+id/followingCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginEnd="24dp"
+    android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Following"
-                android:textSize="14sp"
-                android:textColor="@color/gray"/>
-        </LinearLayout>
+    <TextView
+        android:id="@+id/followersCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="200"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginEnd="24dp"
-            android:gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Followers"
+        android:textSize="14sp"
+        android:textColor="@color/gray"/>
+</LinearLayout>
 
-            <TextView
-                android:id="@+id/followersCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="200"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Followers"
-                android:textSize="14sp"
-                android:textColor="@color/gray"/>
-        </LinearLayout>
+    <TextView
+        android:id="@+id/artworkCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/artworkCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Artwork"
-                android:textSize="14sp"
-                android:textColor="@color/gray"/>
-        </LinearLayout>
-    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artwork"
+        android:textSize="14sp"
+        android:textColor="@color/gray"/>
+</LinearLayout>
+</LinearLayout>
 
     <!-- Profile Description -->
-    <TextView
-        android:id="@+id/profileDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Passionate artist with a love for contemporary art and digital designs.."
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="8dp"
-        android:gravity="center"/>
+<TextView
+    android:id="@+id/profileDescription"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Passionate artist with a love for contemporary art and digital designs.."
+    android:textSize="16sp"
+    android:textColor="@color/black"
+    android:layout_marginTop="8dp"
+    android:gravity="center"/>
 
     <!-- Follow and Message Buttons -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:gravity="center">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="16dp"
+    android:gravity="center">
 
-        <Button
-            android:id="@+id/followButton"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:text="Follow"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/rounded_button"
-            android:textSize="16sp"
-            android:padding="12dp"
-            android:layout_marginEnd="8dp"/>
+<Button
+    android:id="@+id/followButton"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:text="Follow"
+    android:textColor="#FFFFFF"
+    android:background="@drawable/rounded_button"
+    android:textSize="13sp"
+    android:padding="12dp"
+    android:layout_marginEnd="8dp"/>
 
-        <Button
-            android:id="@+id/messageButton"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:text="Message"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/rounded_button"
-            android:textSize="16sp"
-            android:padding="12dp"
-            android:layout_marginStart="8dp"/>
-    </LinearLayout>
+<Button
+    android:id="@+id/messageButton"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:text="Message"
+    android:textColor="#FFFFFF"
+    android:background="@drawable/rounded_button"
+    android:textSize="13sp"
+    android:padding="12dp"
+    android:layout_marginStart="8dp"/>
+</LinearLayout>
 
     <!-- Divider Line -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/gray"/>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="24dp"
+    android:background="@color/gray"/>
 
     <!-- Collections Text -->
-    <TextView
-        android:id="@+id/collectionsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Collections"
-        android:textSize="14sp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:textColor="@color/gray"/>
+<TextView
+    android:id="@+id/collectionsText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Collections"
+    android:textSize="14sp"
+    android:layout_marginTop="8dp"
+    android:gravity="center"
+    android:textColor="@color/gray"/>
 
     <!-- RecyclerView for the collection of artworks -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/artRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/collectionsText" />
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/artRecyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/collectionsText" />
 </LinearLayout>

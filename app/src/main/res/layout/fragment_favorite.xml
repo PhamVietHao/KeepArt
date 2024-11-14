@@ -1,20 +1,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".HomeFragment">
-
+    android:background="@color/white">
 
     <TextView
+        android:id="@+id/favoriteText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Favorite"
-        android:layout_centerInParent="true"
-        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textStyle="bold"
         android:textColor="@color/black"
-        />
+        android:layout_marginTop="20dp"/>
+
+    <!-- RecyclerView to display list of favorite art -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoriteRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/favoriteText"
+        android:padding="16dp"/>
 
 </RelativeLayout>
