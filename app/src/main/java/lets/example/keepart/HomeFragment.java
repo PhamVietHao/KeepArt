@@ -1,10 +1,11 @@
 package lets.example.keepart;
+
 import android.widget.ImageButton;
 import android.widget.Button;
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.dialog.MaterialAlertDialogBuilder; // Import for Material dialog
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,19 +37,21 @@ public class HomeFragment extends Fragment {
         recyclerViewFeatured = view.findViewById(R.id.recyclerViewFeatured);
         recyclerViewNew = view.findViewById(R.id.recyclerViewNew);
 
-        // Set up horizontal layout managers
         recyclerViewPopular.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewFeatured.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewNew.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        // Initialize art lists and adapters
-        populateArtLists();
-        setupAdapters();
-
-        // Initialize the filter button
         view.findViewById(R.id.filter_button).setOnClickListener(v -> openFilterDialog());
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Refresh data when HomeFragment becomes visible
+        populateArtLists();
+        setupAdapters();
     }
 
     private void populateArtLists() {
@@ -60,7 +61,6 @@ public class HomeFragment extends Fragment {
         featuredArtList = new ArrayList<>();
         newArtList = new ArrayList<>();
 
-        // Filter the art items into appropriate lists
         for (Art art : allArtList) {
             String category = art.getCategory();
             if (category != null) {
@@ -88,7 +88,6 @@ public class HomeFragment extends Fragment {
         recyclerViewFeatured.setAdapter(featuredAdapter);
         recyclerViewNew.setAdapter(newAdapter);
 
-        // Apply the initial filter settings
         applyFilter();
     }
 
@@ -133,59 +132,36 @@ public class HomeFragment extends Fragment {
     }
 
     private void openFilterDialog() {
-        // Inflate the filter dialog view
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.filter_dialog, null);
 
-        // Find the CheckBoxes in the dialog layout
         CheckBox checkboxPopular = dialogView.findViewById(R.id.checkbox_popular);
         CheckBox checkboxFeatured = dialogView.findViewById(R.id.checkbox_featured);
         CheckBox checkboxNew = dialogView.findViewById(R.id.checkbox_new);
 
-        // Set the current filter settings to the CheckBoxes
         checkboxPopular.setChecked(showPopular);
         checkboxFeatured.setChecked(showFeatured);
         checkboxNew.setChecked(showNew);
 
-        // Create and show the custom dialog without a Cancel button
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getContext());
-        builder.setView(dialogView);  // No negative button
+        builder.setView(dialogView);
 
-        // Create the dialog
         androidx.appcompat.app.AlertDialog dialog = builder.create();
 
-        // Find the custom "Confirm Filter" button
         Button confirmButton = dialogView.findViewById(R.id.btn_confirm_filter);
-
-        // Set the listener for the "Confirm Filter" button
         confirmButton.setOnClickListener(v -> {
-            // Get the current state of the checkboxes and update the filter settings
             showPopular = checkboxPopular.isChecked();
             showFeatured = checkboxFeatured.isChecked();
             showNew = checkboxNew.isChecked();
-
-            // Apply the filter settings
             applyFilter();
-
-            // Close the dialog after applying the filter
             dialog.dismiss();
         });
 
-        // Find the close button (X icon)
         ImageButton closeButton = dialogView.findViewById(R.id.btn_close_filter);
+        closeButton.setOnClickListener(v -> dialog.dismiss());
 
-        // Set the listener for the close button
-        closeButton.setOnClickListener(v -> {
-            // Dismiss the dialog when the close button is clicked
-            dialog.dismiss();
-        });
-
-        // Set the sliding animation for the dialog
         dialog.getWindow().setWindowAnimations(R.style.DialogSlideInFromBottom);
         dialog.show();
     }
-
-
-
 
     private void applyFilter() {
         recyclerViewPopular.setVisibility(showPopular ? View.VISIBLE : View.GONE);

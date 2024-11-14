@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Art Title Here"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="#000000"
             android:layout_centerInParent="true"
@@ -76,9 +76,10 @@
             android:id="@+id/artLikesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:text="123"
             android:layout_marginStart="4dp"
-            android:textColor="#000000" />
+            android:textColor="@color/pink" />
 
         <!-- Space to increase the gap between likes and artist name -->
         <Space
@@ -92,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Artist: [Artist Name]"
-            android:textStyle="bold"
+            android:textSize="20sp"
             android:textColor="#000000" />
     </LinearLayout>
 
@@ -110,7 +111,8 @@
             android:layout_height="wrap_content"
             android:text="Description:"
             android:textStyle="bold"
-            android:textColor="#808080"
+            android:textSize="20sp"
+            android:textColor="@color/black"
              />
 
         <Space
@@ -124,6 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Last bid:"
+            android:textSize="20sp"
             android:textColor="#808080"
              /> <!-- Added marginStart for gap -->
 
@@ -134,6 +137,7 @@
             android:layout_height="wrap_content"
             android:text="$0.00"
             android:textColor="#FF69B4"
+            android:textSize="20sp"
             android:layout_marginStart="4dp" />
     </LinearLayout>
 
@@ -142,8 +146,9 @@
         android:id="@+id/artDescriptionTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="This is a detailed description of the art piece. It could include the artist's background, the inspiration behind the artwork, and any other relevant information that enhances the viewer's understanding of the piece."
-        android:textColor="#000000"
+        android:textColor="#808080"
         android:layout_marginTop="16dp" />
 
     <!-- Larger gap below the description and last bid section -->
