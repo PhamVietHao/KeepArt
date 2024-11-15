@@ -13,7 +13,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="15dp"/>
 
     <!-- RecyclerView to display list of favorite art -->
     <androidx.recyclerview.widget.RecyclerView
