@@ -8,7 +8,8 @@
         "like": 100,
         "favorited": false,
         "category": "popular",
-        "artist": "Nguyen Dong Nam"
+        "artist": "Nguyen Dong Nam",
+        "lastBidDate": "2024-11-15"
     },
     {
         "id": 2,
@@ -19,7 +20,8 @@
         "like": 150,
         "favorited": true,
         "category": "featured",
-        "artist": "Do Dang Khoa"
+        "artist": "Do Dang Khoa",
+        "lastBidDate": "2024-11-17"
     },
     {
         "id": 3,
@@ -30,6 +32,7 @@
         "like": 150,
         "favorited": true,
         "category": "new",
-        "artist": "Pham Viet Hao"
+        "artist": "Pham Viet Hao",
+        "lastBidDate": "2024-11-17"
     }
 ]

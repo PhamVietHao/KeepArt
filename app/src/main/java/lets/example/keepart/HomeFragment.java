@@ -101,6 +101,8 @@ public class HomeFragment extends Fragment {
         intent.putExtra("favorited", art.isFavorited());
         intent.putExtra("id", art.getId());
         intent.putExtra("artist", art.getArtist());
+        intent.putExtra("lastBidDate", art.getLastBidDate());
+        
         startActivityForResult(intent, ART_DETAIL_REQUEST_CODE);
     }
 

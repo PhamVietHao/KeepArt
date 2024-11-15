@@ -30,15 +30,27 @@ public class ArtDataLoader {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 int id = jsonObject.getInt("id");
                 String title = jsonObject.getString("title");
+
+                // Handle image resource identifier
                 int imageResId = context.getResources().getIdentifier(
                         jsonObject.getString("imageResId"), "drawable", context.getPackageName());
+                if (imageResId == 0) {
+                    Log.w("ArtDataLoader", "Invalid image resource for art id: " + id);
+                }
+
                 String description = jsonObject.getString("description");
                 int price = jsonObject.getInt("price");
                 int like = jsonObject.getInt("like");
                 boolean favorited = jsonObject.getBoolean("favorited");
                 String category = jsonObject.getString("category");
                 String artist = jsonObject.getString("artist");
-                Art art = new Art(id, title, imageResId, like, description, price, favorited, category, artist);
+
+                String lastBidDate = jsonObject.getString("lastBidDate");
+
+                // Log the lastBidDate for debugging
+                Log.d("ArtDataLoader", "Art ID: " + id + ", Last Bid Date: " + lastBidDate);
+
+                Art art = new Art(id, title, imageResId, like, description, price, favorited, category, artist, lastBidDate);
                 artList.add(art);
             }
         } catch (Exception e) {
