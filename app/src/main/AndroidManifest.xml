@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ArtActivity"></activity>
+        <activity android:name=".KhoaProfile"/>
+        <activity android:name=".NamProfile"/>
     </application>
 
 </manifest>

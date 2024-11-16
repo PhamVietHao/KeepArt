@@ -127,16 +127,15 @@
                         android:id="@+id/artist_image_1"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/avatar_hao"
+                        android:src="@drawable/ca1"
                         android:contentDescription="Artist Image"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop" /> <!-- Set onClick here for navigation -->
 
-                    <!-- Artist Name 2 (moved below the image) -->
                     <TextView
                         android:id="@+id/artist_name_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Artist 2 Full Name"
+                        android:text="Do Dang Khoa"
                         android:textSize="14sp"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -158,16 +157,15 @@
                         android:id="@+id/artist_image_2"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/avatar_hao"
+                        android:src="@drawable/cartoon1"
                         android:contentDescription="Artist Image"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop" /> <!-- Set onClick here for navigation -->
 
-                    <!-- Artist Name 2 (moved below the image) -->
                     <TextView
                         android:id="@+id/artist_name_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Artist 2 Full Name"
+                        android:text="Nguyen Dong Nam"
                         android:textSize="14sp"
                         android:textColor="@color/black"
                         android:gravity="center"

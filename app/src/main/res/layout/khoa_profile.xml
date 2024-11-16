@@ -3,8 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center_horizontal"
-    android:layout_alignParentTop="true">
+    android:gravity="center_horizontal"> <!-- Center all content horizontally -->
 
     <!-- Profile Title -->
     <TextView
@@ -15,28 +14,29 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp" />
 
-    <!-- Circular Avatar -->
-    <ImageView
-        android:id="@+id/userAvatar"
+    <!-- Circular Avatar as ImageButton -->
+    <ImageButton
+        android:id="@+id/userAvatarButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/circle_background"
         android:scaleType="centerCrop"
-        android:src="@drawable/avatar_hao"/>
+        android:src="@drawable/avatar_khoa"
+        android:contentDescription="User Avatar Button" />
 
     <!-- User Name -->
     <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pham Viet Hao"
+        android:text="Do Dang Khoa"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_marginBottom="4dp"/>
+        android:layout_marginBottom="4dp" />
 
     <!-- Username -->
     <TextView
@@ -46,7 +46,7 @@
         android:text="@user"
         android:textSize="16sp"
         android:textColor="@color/gray"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp" />
 
     <!-- Following, Followers, and Artwork Stats -->
     <LinearLayout
@@ -56,54 +56,53 @@
         android:gravity="center"
         android:layout_marginBottom="16dp">
 
+        <!-- Following Count -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginEnd="24dp"
             android:gravity="center">
-
             <TextView
                 android:id="@+id/followingCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="100"
+                android:text="150"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
-
+                android:textColor="@color/black" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Following"
                 android:textSize="14sp"
-                android:textColor="@color/gray"/>
+                android:textColor="@color/gray" />
         </LinearLayout>
 
+        <!-- Followers Count -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginEnd="24dp"
             android:gravity="center">
-
             <TextView
                 android:id="@+id/followersCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="200"
+                android:text="400"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
-
+                android:textColor="@color/black" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Followers"
                 android:textSize="14sp"
-                android:textColor="@color/gray"/>
+                android:textColor="@color/gray" />
         </LinearLayout>
 
+        <!-- Artwork Count -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,11 +132,11 @@
         android:id="@+id/profileDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Passionate artist with a love for contemporary art and digital designs.."
+        android:text="Young designer with a passion for bold, colorful, and maximalist designs."
         android:textSize="16sp"
         android:textColor="@color/black"
         android:layout_marginTop="8dp"
-        android:gravity="center"/>
+        android:gravity="center" />
 
     <!-- Follow and Message Buttons -->
     <LinearLayout
@@ -156,7 +155,7 @@
             android:background="@drawable/rounded_button"
             android:textSize="13sp"
             android:padding="12dp"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/messageButton"
@@ -167,7 +166,7 @@
             android:background="@drawable/rounded_button"
             android:textSize="13sp"
             android:padding="12dp"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp" />
     </LinearLayout>
 
     <!-- Divider Line -->
@@ -175,7 +174,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="24dp"
-        android:background="@color/gray"/>
+        android:background="@color/gray" />
 
     <!-- Collections Text -->
     <TextView
@@ -186,12 +185,14 @@
         android:textSize="14sp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:textColor="@color/gray"/>
+        android:textColor="@color/gray" />
 
     <!-- RecyclerView for the collection of artworks -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/artRecyclerView"
+        android:id="@+id/artRecyclerViewKhoa"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/collectionsText" />
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="30dp"
+        android:layout_weight="1" />
 </LinearLayout>

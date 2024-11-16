@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    android:layout_alignParentTop="true">
+    android:layout_alignParentTop="true"
+    android:background="@drawable/app_wallpaper"> <!-- Set background image here -->
 
     <!-- Profile Title -->
     <TextView
@@ -25,14 +26,14 @@
         android:layout_marginBottom="12dp"
         android:background="@drawable/circle_background"
         android:scaleType="centerCrop"
-        android:src="@drawable/avatar_hao"/>
+        android:src="@drawable/cartoon1"/>
 
     <!-- User Name -->
     <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pham Viet Hao"
+        android:text="Nguyen Dong Nam"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -43,7 +44,7 @@
         android:id="@+id/userHandle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@user"
+        android:text="@MobileHouse"
         android:textSize="16sp"
         android:textColor="@color/gray"
         android:layout_marginBottom="16dp"/>
@@ -190,8 +191,10 @@
 
     <!-- RecyclerView for the collection of artworks -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/artRecyclerView"
+        android:id="@+id/artRecyclerViewNam"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/collectionsText" />
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="30dp"
+        android:layout_weight="1" />
 </LinearLayout>

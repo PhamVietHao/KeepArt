@@ -1,15 +1,15 @@
 package lets.example.keepart;
 
-import android.widget.ImageButton;
-import android.widget.Button;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -43,6 +43,11 @@ public class HomeFragment extends Fragment {
 
         view.findViewById(R.id.filter_button).setOnClickListener(v -> openFilterDialog());
 
+        // Set up onClickListener for artist_image_1
+        ImageView artistImage1 = view.findViewById(R.id.artist_image_1);
+        artistImage1.setOnClickListener(v -> openKhoaProfile());
+        ImageView artistImage2 = view.findViewById(R.id.artist_image_2);
+        artistImage2.setOnClickListener(v -> openNamProfile());
         return view;
     }
 
@@ -102,7 +107,7 @@ public class HomeFragment extends Fragment {
         intent.putExtra("id", art.getId());
         intent.putExtra("artist", art.getArtist());
         intent.putExtra("lastBidDate", art.getLastBidDate());
-        
+
         startActivityForResult(intent, ART_DETAIL_REQUEST_CODE);
     }
 
@@ -169,5 +174,21 @@ public class HomeFragment extends Fragment {
         recyclerViewPopular.setVisibility(showPopular ? View.VISIBLE : View.GONE);
         recyclerViewFeatured.setVisibility(showFeatured ? View.VISIBLE : View.GONE);
         recyclerViewNew.setVisibility(showNew ? View.VISIBLE : View.GONE);
+    }
+
+    private void openKhoaProfile() {
+        // Create an Intent to open the KhoaProfile fragment
+        Intent intent = new Intent(getContext(), KhoaProfile.class);
+        // Passing artist's name
+        intent.putExtra("artist_name", "Do Dang Khoa");  // You can dynamically set this
+        startActivity(intent);
+    }
+
+    private void openNamProfile() {
+        // Create an Intent to open the KhoaProfile fragment
+        Intent intent = new Intent(getContext(), NamProfile.class);
+        // Passing artist's name
+        intent.putExtra("artist_name", "Nguyen Dong Nam");  // You can dynamically set this
+        startActivity(intent);
     }
 }
