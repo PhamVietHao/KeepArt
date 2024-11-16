@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/wall_paper_2">
 
     <TextView
         android:id="@+id/favoriteText"
@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/favorite_text"
         android:layout_marginTop="15dp"/>
 
     <!-- RecyclerView to display list of favorite art -->

@@ -116,7 +116,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1.25" />
 
         <!-- Last Bid Label -->
         <TextView
@@ -184,7 +184,7 @@
             <EditText
                 android:id="@+id/bidEditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:hint="Enter your bid"
                 android:inputType="numberDecimal"
@@ -197,10 +197,12 @@
                 android:id="@+id/bidButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+
                 android:src="@drawable/auction"
                 android:contentDescription="Place Bid"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerInside" />
         </LinearLayout>
 
         <!-- Bidding Closed Message -->

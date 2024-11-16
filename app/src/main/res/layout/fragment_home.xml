@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/app_wallpaper"
     tools:context=".HomeFragment">
 
     <TextView
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Hello Hao"
         android:textSize="24sp"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -105,75 +106,78 @@
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp">
+            android:paddingTop="8dp"
+            android:layout_marginLeft="40dp">
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="8dp">
+
+        <!-- Artist 1 -->
+        <LinearLayout
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/artist_button_background"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/artist_image_1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ca1"
+                android:contentDescription="Artist Image"
+                android:scaleType="centerCrop" /> <!-- Set onClick here for navigation -->
+
+            <TextView
+                android:id="@+id/artist_name_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:text="Do Dang Khoa"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:maxLines="2"
+                android:ellipsize="end" />
+        </LinearLayout>
 
-                <!-- Artist 1 -->
-                <LinearLayout
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/artist_button_background"
-                    android:padding="8dp">
+        <!-- Artist 2 -->
+        <LinearLayout
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/artist_button_background"
+            android:padding="8dp">
 
-                    <ImageView
-                        android:id="@+id/artist_image_1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/ca1"
-                        android:contentDescription="Artist Image"
-                        android:scaleType="centerCrop" /> <!-- Set onClick here for navigation -->
+            <ImageView
+                android:id="@+id/artist_image_2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/cartoon1"
+                android:contentDescription="Artist Image"
+                android:scaleType="centerCrop" /> <!-- Set onClick here for navigation -->
 
-                    <TextView
-                        android:id="@+id/artist_name_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Do Dang Khoa"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:gravity="center"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-                </LinearLayout>
+            <TextView
+                android:id="@+id/artist_name_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nguyen Dong Nam"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:maxLines="2"
+                android:ellipsize="end" />
+        </LinearLayout>
 
-                <!-- Artist 2 -->
-                <LinearLayout
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/artist_button_background"
-                    android:padding="8dp">
+    </LinearLayout>
+</HorizontalScrollView>
 
-                    <ImageView
-                        android:id="@+id/artist_image_2"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/cartoon1"
-                        android:contentDescription="Artist Image"
-                        android:scaleType="centerCrop" /> <!-- Set onClick here for navigation -->
-
-                    <TextView
-                        android:id="@+id/artist_name_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nguyen Dong Nam"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:gravity="center"
-                        android:maxLines="2"
-                        android:ellipsize="end" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </HorizontalScrollView>
     </LinearLayout>
 </RelativeLayout>

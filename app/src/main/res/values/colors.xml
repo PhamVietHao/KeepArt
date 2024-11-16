@@ -10,4 +10,12 @@
     <color name="pink">#ea8671</color>
     <color name="blue">#60ddf0</color>
     <color name="gray">#b3a9a7</color>
+    <color name="big_text">#115aff</color>
+    <color name="small_text">#d86fff</color>
+
+    <color name="favorite_text">#f000ff</color>
+
+    <color name="most_bold">#FF000000</color>
+    <color name="less_bold">#FFFFFFFF</color>
+
 </resources>
