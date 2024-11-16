@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,
                 selectedFragment).commit();
-
-
-
     }
 
     private NavigationBarView.OnItemSelectedListener navListener =

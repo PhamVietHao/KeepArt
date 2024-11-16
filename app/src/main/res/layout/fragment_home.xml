@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +7,6 @@
     android:background="@color/white"
     tools:context=".HomeFragment">
 
-    <!-- Greeting Text -->
     <TextView
         android:id="@+id/greeting_text"
         android:layout_width="wrap_content"
@@ -21,7 +19,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp" />
 
-    <!-- Search and Filter Container -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -32,7 +29,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp">
 
-        <!-- Search Box -->
         <EditText
             android:id="@+id/search_box"
             android:layout_width="0dp"
@@ -43,7 +39,6 @@
             android:background="@drawable/search_box_background"
             android:drawableLeft="@drawable/ic_search" />
 
-        <!-- Filter Button -->
         <ImageButton
             android:id="@+id/filter_button"
             android:layout_width="48dp"
@@ -61,7 +56,6 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Section 1 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +69,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" />
 
-        <!-- Section 2: Featured Art -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,7 +82,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" />
 
-        <!-- Section 3: New Art -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,6 +94,88 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" />
-    </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Artists"
+            android:textSize="18sp"
+            android:paddingTop="16dp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <!-- Artist 1 -->
+                <LinearLayout
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/artist_button_background"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/artist_image_1"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/avatar_hao"
+                        android:contentDescription="Artist Image"
+                        android:scaleType="centerCrop" />
+
+                    <!-- Artist Name 2 (moved below the image) -->
+                    <TextView
+                        android:id="@+id/artist_name_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Artist 2 Full Name"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end" />
+                </LinearLayout>
+
+                <!-- Artist 2 -->
+                <LinearLayout
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/artist_button_background"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/artist_image_2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/avatar_hao"
+                        android:contentDescription="Artist Image"
+                        android:scaleType="centerCrop" />
+
+                    <!-- Artist Name 2 (moved below the image) -->
+                    <TextView
+                        android:id="@+id/artist_name_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Artist 2 Full Name"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
 </RelativeLayout>
