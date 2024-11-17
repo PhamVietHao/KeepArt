@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ public class ProfileFragment extends Fragment {
     private List<Art> artList = new ArrayList<>();
     private ArtistArtAdapter artistArtAdapter;
     private RecyclerView artRecyclerView;
+    private TextView artworkCount; // TextView for artwork count
 
     @Nullable
     @Override
@@ -29,6 +31,7 @@ public class ProfileFragment extends Fragment {
 
         // Initialize the RecyclerView
         artRecyclerView = view.findViewById(R.id.artRecyclerView);
+        artworkCount = view.findViewById(R.id.artworkCount); // Find the TextView for artwork count
 
         // Set the layout manager
         artRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -51,6 +54,9 @@ public class ProfileFragment extends Fragment {
         // Update the adapter with the filtered list
         artistArtAdapter.updateArtistArtList(artistArtList);
 
+        // Update the artwork count TextView with the filtered list size
+        artworkCount.setText("" + artistArtList.size());
+
         return view;
     }
 
@@ -58,7 +64,7 @@ public class ProfileFragment extends Fragment {
     private List<Art> filterByArtist(List<Art> artList, String artistName) {
         List<Art> filteredList = new ArrayList<>();
         for (Art art : artList) {
-            if (art.getArtist().equals(artistName)) {
+            if (art.getArtist() != null && art.getArtist().equals(artistName)) {
                 filteredList.add(art);
             }
         }

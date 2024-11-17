@@ -1,5 +1,6 @@
 package lets.example.keepart;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,9 +8,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import lets.example.keepart.HomeFragment;
-import lets.example.keepart.FavoriteFragment;
-import lets.example.keepart.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,29 +22,44 @@ public class MainActivity extends AppCompatActivity {
         bottomNavbar.setOnItemSelectedListener(navListener);
 
         Fragment selectedFragment = new HomeFragment();
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,
-                selectedFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, selectedFragment).commit();
     }
 
     private NavigationBarView.OnItemSelectedListener navListener =
             item -> {
                 int itemId = item.getItemId();
-                Fragment selectedFragment = null;
+                Fragment selectedFragment;
 
                 if (itemId == R.id.home) {
                     selectedFragment = new HomeFragment();
                 } else if (itemId == R.id.favorite) {
                     selectedFragment = new FavoriteFragment();
                 } else if (itemId == R.id.profile) {
-                    // Handle the profile case
                     selectedFragment = new ProfileFragment();
-
                 } else {
                     selectedFragment = new HomeFragment();
                 }
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, selectedFragment).commit();
                 return true;
             };
+
+    @Override
+    public void onBackPressed() {
+        // Show a confirmation dialog when back is pressed
+        new AlertDialog.Builder(this)
+                .setTitle("Exit App")
+                .setMessage("Are you sure you want to leave the app?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    // Exit the app
+                    finishAffinity(); // Close all activities and exit
+                })
+                .setNegativeButton("No", (dialog, which) -> {
+                    // Dismiss the dialog and stay in the app
+                    dialog.dismiss();
+                })
+                .setOnCancelListener(dialog -> super.onBackPressed()) // Handle "back" on dialog
+                .show();
+    }
 
 }

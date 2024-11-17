@@ -2,6 +2,9 @@ package lets.example.keepart;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton; // Import ImageButton
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +17,8 @@ public class KhoaProfile extends AppCompatActivity {
     private ArtistArtAdapter artistArtAdapter;
     private RecyclerView artRecyclerViewKhoa;
     private String artistName; // Store the artist's name
+    private TextView artworkCount; // TextView for artwork count
+    private ImageButton backButton; // ImageButton for the back button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,8 @@ public class KhoaProfile extends AppCompatActivity {
 
         // Initialize the RecyclerView
         artRecyclerViewKhoa = findViewById(R.id.artRecyclerViewKhoa);
+        artworkCount = findViewById(R.id.artworkCount); // Find the TextView for artwork count
+        backButton = findViewById(R.id.backButton); // Find the back button
 
         // Set the layout manager to GridLayoutManager for grid-style layout with 2 columns per row
         artRecyclerViewKhoa.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns per row
@@ -40,7 +47,7 @@ public class KhoaProfile extends AppCompatActivity {
 
         // Debug: Log all the art data with artist's name
         for (Art art : artList) {
-            Log.d("ProfileActivity", "Art Title: " + art.getTitle() + ", Artist: " + art.getArtist());
+            Log.d("KhoaProfile", "Art Title: " + art.getTitle() + ", Artist: " + art.getArtist());
         }
 
         // Filter the art data by artist name dynamically
@@ -48,6 +55,17 @@ public class KhoaProfile extends AppCompatActivity {
 
         // Update the adapter with the filtered list
         artistArtAdapter.updateArtistArtList(artistArtList);
+
+        // Update the artwork count TextView with the filtered list size
+        artworkCount.setText("" + artistArtList.size());
+
+        // Set up the back button to finish the activity when clicked
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Close the activity
+            }
+        });
     }
 
     // Filter method to get arts by artist name

@@ -2,6 +2,9 @@ package lets.example.keepart;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +17,8 @@ public class NamProfile extends AppCompatActivity {
     private ArtistArtAdapter artistArtAdapter;
     private RecyclerView artRecyclerViewNam;
     private String artistName; // Store the artist's name
+    private TextView artworkCount; // TextView for artwork count
+    private ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +32,8 @@ public class NamProfile extends AppCompatActivity {
 
         // Initialize the RecyclerView
         artRecyclerViewNam = findViewById(R.id.artRecyclerViewNam);
-
+        artworkCount = findViewById(R.id.artworkCount); // Find the TextView for artwork count
+        backButton = findViewById(R.id.backButton); // Find the back button
         // Set the layout manager to GridLayoutManager for grid-style layout with 2 columns per row
         artRecyclerViewNam.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns per row
 
@@ -48,6 +54,16 @@ public class NamProfile extends AppCompatActivity {
 
         // Update the adapter with the filtered list
         artistArtAdapter.updateArtistArtList(artistArtList);
+
+        // Update the artwork count TextView with the filtered list size
+        artworkCount.setText("" + artistArtList.size());
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Close the activity
+            }
+        });
     }
 
     // Filter method to get arts by artist name
